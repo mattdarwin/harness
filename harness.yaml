@@ -1,7 +1,7 @@
 pipeline:  
-    name: YAML Example  
-    identifier: YAML_Example  
-    projectIdentifier: CD_Examples  
+#     name: YAML Example  
+#     identifier: YAML_Example  
+#     projectIdentifier: CD_Examples  
     orgIdentifier: default  
     tags: {}  
     description:   
