@@ -1,1 +1,18 @@
-# hello world
+pipeline:  
+    name: YAML Example  
+    identifier: YAML_Example  
+    projectIdentifier: CD_Examples  
+    orgIdentifier: default  
+    tags: {}  
+    description:   
+    stages:  
+        -   
+    notificationRules:  
+        -   
+    flowControl:  
+          
+    properties:  
+          
+    timeout:   
+    variables:  
+        -    
