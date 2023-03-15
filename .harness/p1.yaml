@@ -77,42 +77,6 @@ pipeline:
                     approverInputs: []
         tags: {}
     - stage:
-        name: stage 2
-        identifier: st2
-        description: ""
-        type: Custom
-        spec:
-          execution:
-            steps:
-              - step:
-                  type: Container
-                  name: container-step1
-                  identifier: ContainerStep_1
-                  spec:
-                    connectorRef: account.harnessImage
-                    image: alpine
-                    command: echo "hello world"
-                    shell: Sh
-                    infrastructure:
-                      type: KubernetesDirect
-                      spec:
-                        connectorRef: k8s_connector
-                        namespace: docker
-                        resources:
-                          limits:
-                            cpu: "0.5"
-                            memory: 500Mi
-                    outputVariables: []
-                    envVariables: {}
-                  timeout: 10m
-        tags: {}
-        failureStrategies:
-          - onFailure:
-              errors:
-                - AllErrors
-              action:
-                type: Ignore
-    - stage:
         name: helm stage
         identifier: helm_stage
         description: ""
