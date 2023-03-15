@@ -17,7 +17,8 @@ pipeline:
           environment:
             environmentRef: dev
             deployToAll: false
-            infrastructureDefinitions: <+input>
+            infrastructureDefinitions:
+              - identifier: eks
           execution:
             steps:
               - step:
