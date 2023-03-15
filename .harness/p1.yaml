@@ -134,6 +134,7 @@ pipeline:
                   timeout: 10m
                   spec:
                     skipDryRun: false
+                    ignoreReleaseHistFailStatus: false
             rollbackSteps:
               - step:
                   name: Helm Rollback
@@ -148,35 +149,3 @@ pipeline:
                 - AllErrors
               action:
                 type: StageRollback
-    - stage:
-        name: infrastructure
-        identifier: infrastructure
-        description: ""
-        type: Custom
-        spec:
-          execution:
-            steps:
-              - step:
-                  type: CreateStack
-                  name: CloudFormation Create Stack_1
-                  identifier: CloudFormationCreateStack_1
-                  spec:
-                    provisionerIdentifier: cfp1
-                    configuration:
-                      stackName: stack1
-                      connectorRef: account.was
-                      region: us-east-1
-                      templateFile:
-                        type: Remote
-                        spec:
-                          store:
-                            type: Github
-                            spec:
-                              paths:
-                                - cf.yaml
-                              connectorRef: account.GitHub
-                              gitFetchType: Branch
-                              branch: main
-                      roleArn: ""
-                  timeout: 10m
-        tags: {}
