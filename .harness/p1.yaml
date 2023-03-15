@@ -93,6 +93,20 @@ pipeline:
           execution:
             steps:
               - step:
+                  type: ShellScript
+                  name: helm-repo-update
+                  identifier: helmrepoupdate
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: helm repo update
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+              - step:
                   name: Helm Deployment
                   identifier: helmDeployment
                   type: HelmDeploy
