@@ -86,7 +86,7 @@ pipeline:
             steps:
               - step:
                   type: Container
-                  name: Container Step_1
+                  name: container-step1
                   identifier: ContainerStep_1
                   spec:
                     connectorRef: account.harnessImage
