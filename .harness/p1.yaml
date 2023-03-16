@@ -33,7 +33,7 @@ pipeline:
                       spec:
                         script: |-
                           echo "hello world"
-                          tf -version
+                          terraform -version
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
@@ -79,7 +79,9 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: helm repo update
+                        script: |-
+                          helm repo add cloudecho https://cloudecho.github.io/charts/
+                          helm repo update
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
@@ -105,3 +107,4 @@ pipeline:
                 - AllErrors
               action:
                 type: StageRollback
+        variables: []
