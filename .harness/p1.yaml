@@ -82,17 +82,10 @@ pipeline:
                         script: |-
                           helm repo add cloudecho https://cloudecho.github.io/charts/
                           helm repo update
+                          helm install my-hello cloudecho/hello -n deploying --version=0.1.2
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
-              - step:
-                  name: Helm Deployment
-                  identifier: helmDeployment
-                  type: HelmDeploy
-                  timeout: 10m
-                  spec:
-                    skipDryRun: false
-                    ignoreReleaseHistFailStatus: false
             rollbackSteps:
               - step:
                   name: Helm Rollback
