@@ -6,7 +6,7 @@ pipeline:
   tags: {}
   stages:
     - stage:
-        name: stage 1
+        name: infrastructure
         identifier: s2
         description: ""
         type: Deployment
@@ -54,7 +54,7 @@ pipeline:
                 type: Ignore
         variables: []
     - stage:
-        name: helm stage
+        name: helm release
         identifier: helm_stage
         description: ""
         type: Deployment
@@ -110,3 +110,28 @@ pipeline:
               action:
                 type: StageRollback
         variables: []
+    - stage:
+        name: copy file to S3
+        identifier: copy_file_to_S3
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: copy DAG to S3
+                  identifier: copy_DAG_to_S3
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: |-
+                          echo "destination bucket is "
+                          echo "source file is "
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+        tags: {}
