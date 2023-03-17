@@ -41,10 +41,16 @@ pipeline:
                           cd harness/infra
                           terraform init
                           terraform plan
-                          #terraform apply -auto-approve
-                          #BUCKET_ARN=`terraform output s3_bucket_arn`
-                          BUCKET_ARN=hello_world
-                    environmentVariables: []
+                          terraform apply -auto-approve
+                          BUCKET_ARN=`terraform output s3_bucket_arn`
+                          #BUCKET_ARN=hello_world
+                    environmentVariables:
+                      - name: AWS_SECRET_ACCESS_KEY
+                        type: String
+                        value: <+secrets.getValue("AWS_SECRET_ACCESS_KEY")>
+                      - name: AWS_ACCESS_KEY_ID
+                        type: String
+                        value: <+secrets.getValue("AWS_ACCESS_KEY_ID")>
                     outputVariables:
                       - name: BUCKET_ARN
                         type: String
