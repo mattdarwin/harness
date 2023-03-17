@@ -32,10 +32,9 @@ pipeline:
                       type: Inline
                       spec:
                         script: |-
-                          export GITHUB_USER=mattdarwin
-                          export GITHUB_TOKEN=<+secrets.getValue("GitHub_PAT")>
                           export GITHUB_REPOSITORY=mattdarwin/harness
                           echo "git clone https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}"
+                          rm -rf harness
                           git clone https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}
                           terraform -version
                           cd harness/infra
@@ -51,6 +50,12 @@ pipeline:
                       - name: AWS_ACCESS_KEY_ID
                         type: String
                         value: <+secrets.getValue("AWS_ACCESS_KEY_ID")>
+                      - name: GITHUB_TOKEN
+                        type: String
+                        value: <+secrets.getValue("GitHub_PAT")>
+                      - name: GITHUB_USER
+                        type: String
+                        value: mattdarwin
                     outputVariables:
                       - name: BUCKET_ARN
                         type: String
