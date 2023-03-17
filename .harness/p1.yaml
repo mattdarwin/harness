@@ -32,10 +32,15 @@ pipeline:
                       type: Inline
                       spec:
                         script: |-
-
-
-                          echo "secret is: " <+secrets.getValue("GitHub_PAT")>
+                          export GITHUB_USER=mattdarwin
+                          export GITHUB_TOKEN=<+secrets.getValue("GitHub_PAT")>
+                          export GITHUB_REPOSITORY=mattdarwin/harness
+                          echo "git clone https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}"
+                          git clone https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}
                           terraform -version
+                          cd harness/infra
+                          terraform init
+                          terraform plan
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
