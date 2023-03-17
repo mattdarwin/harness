@@ -4,5 +4,5 @@ output "s3_bucket_arn" {
 }
 output "s3_bucket_name" {
   description = "name of bucket"
-  value ="${aws_s3_bucket.b.name}"
+  value ="${aws_s3_bucket.b.id}"
 }
