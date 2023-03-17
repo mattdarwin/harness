@@ -64,7 +64,7 @@ pipeline:
                     environmentVariables:
                       - name: BUCKET_ARN
                         type: String
-                        value: <+execution.steps.ShellScript_1.output.outputVariables.[BUCKET_NAME]>
+                        value: <+execution.steps.ShellScript_1.output.outputVariables.BUCKET_ARN>
                     outputVariables: []
                   timeout: 10m
             rollbackSteps:
