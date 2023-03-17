@@ -32,7 +32,9 @@ pipeline:
                       type: Inline
                       spec:
                         script: |-
-                          echo "hello world"
+
+
+                          echo "secret is: " <+secrets.getValue("github-secret")>
                           terraform -version
                     environmentVariables: []
                     outputVariables: []
