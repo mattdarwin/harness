@@ -116,21 +116,12 @@ pipeline:
                       type: Inline
                       spec:
                         script: |-
-                          #helm repo add cloudecho https://cloudecho.github.io/charts/
-                          #helm repo update
-                          #helm install my-hello cloudecho/hello -n deploying --version=0.1.2
+                          helm repo add cloudecho https://cloudecho.github.io/charts/
+                          helm repo update
+                          helm install my-hello cloudecho/hello -n deploying --version=0.1.2
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
-              - step:
-                  type: HelmDeploy
-                  name: Helm Deploy_1
-                  identifier: HelmDeploy_1
-                  spec:
-                    skipDryRun: false
-                    ignoreReleaseHistFailStatus: false
-                  timeout: 10m
-                  failureStrategies: []
             rollbackSteps:
               - step:
                   name: Helm Rollback
