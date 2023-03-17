@@ -31,7 +31,7 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: |-
+                        script: |
                           export GITHUB_REPOSITORY=mattdarwin/harness
                           echo "git clone https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}"
                           rm -rf harness
@@ -42,7 +42,7 @@ pipeline:
                           terraform plan
                           terraform apply -auto-approve
                           BUCKET_ARN=`terraform output s3_bucket_arn`
-                          #BUCKET_ARN=hello_world
+                          BUCKET_NAME=`terraform output s3_bucket_arn`
                     environmentVariables:
                       - name: AWS_SECRET_ACCESS_KEY
                         type: String
@@ -60,6 +60,9 @@ pipeline:
                       - name: BUCKET_ARN
                         type: String
                         value: BUCKET_ARN
+                      - name: BUCKET_NAME
+                        type: String
+                        value: BUCKET_NAME
                   timeout: 10m
               - step:
                   type: ShellScript
@@ -166,7 +169,10 @@ pipeline:
                           echo "not doing clone since the delegate is stateful"
                           #git clone harness 
                           aws s3 cp harness/app/src/python/my.dag.py s3://$BUCKET_NAME/dags/
-                    environmentVariables: []
+                    environmentVariables:
+                      - name: BUCKET_NAME
+                        type: String
+                        value: <+pipeline.stages.s2.spec.execution.steps.ShellScript_1.output.outputVariables.BUCKET_NAME>
                     outputVariables: []
                   timeout: 10m
         tags: {}
