@@ -173,6 +173,12 @@ pipeline:
                       - name: BUCKET_NAME
                         type: String
                         value: <+pipeline.stages.s2.spec.execution.steps.ShellScript_1.output.outputVariables.BUCKET_NAME>
+                      - name: AWS_SECRET_ACCESS_KEY
+                        type: String
+                        value: <+secrets.getValue("AWS_SECRET_ACCESS_KEY")>
+                      - name: AWS_ACCESS_KEY_ID
+                        type: String
+                        value: <+secrets.getValue("AWS_ACCESS_KEY_ID")>
                     outputVariables: []
                   timeout: 10m
         tags: {}
