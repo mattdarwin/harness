@@ -7,9 +7,9 @@ terraform {
   }
 }
 
-provider "aws" {
+#provider "aws" {
   # Configuration options
-}
+#}
 
 resource "aws_s3_bucket" "b" {
   bucket = "matt-tf-test-bucket-234"
