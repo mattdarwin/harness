@@ -43,6 +43,7 @@ pipeline:
                           terraform plan
                           terraform apply -auto-approve
                           BUCKET_ARN=`terraform output s3_bucket_arn`
+                          TEST_VAR=hello_world
                     environmentVariables: []
                     outputVariables:
                       - name: BUCKET_ARN
@@ -63,7 +64,7 @@ pipeline:
                     environmentVariables:
                       - name: BUCKET_ARN
                         type: String
-                        value: <+execution.steps.ShellScript_1.output.outputVariables.[BUCKET_ARN]>
+                        value: <+execution.steps.ShellScript_1.output.outputVariables.[TEST_VAR]>
                     outputVariables: []
                   timeout: 10m
             rollbackSteps:
