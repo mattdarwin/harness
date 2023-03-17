@@ -34,7 +34,7 @@ pipeline:
                         script: |-
 
 
-                          echo "secret is: " <+secrets.getValue("github-secret")>
+                          echo "secret is: " <+secrets.getValue("GitHub_PAT")>
                           terraform -version
                     environmentVariables: []
                     outputVariables: []
