@@ -42,7 +42,7 @@ pipeline:
                           terraform plan
                           terraform apply -auto-approve
                           BUCKET_ARN=$(terraform output s3_bucket_arn  |sed 's/"//g')
-                          BUCKET_NAME=$(terraform output s3_bucket_name  |sed 's/"//g'
+                          BUCKET_NAME=$(terraform output s3_bucket_name  |sed 's/"//g')
                     environmentVariables:
                       - name: AWS_SECRET_ACCESS_KEY
                         type: String
