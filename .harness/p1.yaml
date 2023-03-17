@@ -41,9 +41,9 @@ pipeline:
                           cd harness/infra
                           terraform init
                           terraform plan
-                          terraform apply -auto-approve
-                          BUCKET_ARN=`terraform output s3_bucket_arn`
-                          TEST_VAR=hello_world
+                          #terraform apply -auto-approve
+                          #BUCKET_ARN=`terraform output s3_bucket_arn`
+                          BUCKET_ARN=hello_world
                     environmentVariables: []
                     outputVariables:
                       - name: BUCKET_ARN
