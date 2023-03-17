@@ -41,7 +41,29 @@ pipeline:
                           cd harness/infra
                           terraform init
                           terraform plan
+                          terraform apply
+                          BUCKET_ARN=`terraform output s3_bucket_arn`
                     environmentVariables: []
+                    outputVariables:
+                      - name: BUCKET_ARN
+                        type: String
+                        value: BUCKET_ARN
+                  timeout: 10m
+              - step:
+                  type: ShellScript
+                  name: Shell Script_2
+                  identifier: ShellScript_2
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: echo $BUCKET_ARN
+                    environmentVariables:
+                      - name: BUCKET_ARN
+                        type: String
+                        value: BUCKET_ARN
                     outputVariables: []
                   timeout: 10m
             rollbackSteps:
