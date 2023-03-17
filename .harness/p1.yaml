@@ -123,7 +123,7 @@ pipeline:
                         script: |-
                           helm repo add cloudecho https://cloudecho.github.io/charts/
                           helm repo update
-                          helm install my-hello cloudecho/hello -n deploying --version=0.1.2
+                          helm upgrade -i my-hello cloudecho/hello -n deploying --version=0.1.2
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
@@ -161,8 +161,11 @@ pipeline:
                       type: Inline
                       spec:
                         script: |-
-                          echo "destination bucket is "
-                          echo "source file is "
+                          echo "destination bucket is $BUCKET_NAME"
+                          echo "source file is my.dag"
+                          echo "not doing clone since the delegate is stateful"
+                          #git clone harness 
+                          aws s3 cp harness/app/src/python/my.dag.py s3://$BUCKET_NAME/dags/
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
