@@ -4,6 +4,9 @@ pipeline:
   projectIdentifier: default_project
   orgIdentifier: default
   tags: {}
+  delegateSelectors:
+    - eks
+    - prod
   stages:
     - stage:
         name: DEV
