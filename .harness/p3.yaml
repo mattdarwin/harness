@@ -33,6 +33,8 @@ pipeline:
                           echo "hello world"
                           echo "stage.delegateSelectors[0] = <+stage.delegateSelectors[0]>"
                           echo "stage.delegateSelectors[0].delegateSelectors = <+stage.delegateSelectors[0].delegateSelectors>"
+                          echo "pipeline.delegateSelectors[1] = <+pipeline.delegateSelectors[1]>"
+                          echo "pipeline.delegateSelectors[1].delegateSelectors = <+pipeline.delegateSelectors[1].delegateSelectors>"
                           echo "pipeline.delegateSelectors[0] = <+pipeline.delegateSelectors[0]>"
                           echo "pipeline.delegateSelectors[0].delegateSelectors = <+pipeline.delegateSelectors[0].delegateSelectors>"
                     environmentVariables: []
