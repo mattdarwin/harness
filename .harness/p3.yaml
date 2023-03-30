@@ -8,6 +8,7 @@ pipeline:
     - stage:
         name: DEV
         identifier: DEV
+        blabla: "null"
         description: ""
         type: Custom
         spec:
