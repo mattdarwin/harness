@@ -29,7 +29,7 @@ pipeline:
                         script: |-
                           echo "hello world"
                           echo "stage.delegateSelectors = <+stage.delegateSelectors>"
-                          echo "pipeline.delegateSelectors = <+pipeline.delegateSelectors>"
+                          echo "pipeline.delegateSelectors = <+pipeline.delegateSelectors[0].delegateSelectors>"
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
