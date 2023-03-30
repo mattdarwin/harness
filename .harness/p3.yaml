@@ -23,7 +23,10 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: echo "hello world"
+                        script: |-
+                          echo "hello world"
+                          echo "stage.delegateSelectors = <+stage.delegateSelectors>"
+                          echo "pipeline.delegateSelectors = <+pipeline.delegateSelectors>"
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
