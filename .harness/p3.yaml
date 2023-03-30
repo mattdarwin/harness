@@ -9,6 +9,8 @@ pipeline:
         name: DEV
         identifier: DEV
         blabla: "null"
+        delegateSelectors:
+          - tag1
         description: ""
         type: Custom
         spec:
